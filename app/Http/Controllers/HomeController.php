@@ -29,4 +29,8 @@ class HomeController extends Controller
     public function assistence(){
         return view('assistence');
     }
+
+    public function evaluation(){
+        return view('evaluation');
+    }
 }

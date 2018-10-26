@@ -29,31 +29,36 @@
                 </a>
 
                 @auth
-                    @if(Auth::user()->hasRole('admin'))
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Alumnos
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Asistencia</a>
-                                <a class="dropdown-item" href="#">Notas</a>
-                            </div>
-                        </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Catalogo
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Registro de Ciclos</a>
-                                <a class="dropdown-item" href="#">Registro de Alumnos</a>
-                                <a class="dropdown-item" href="#">Registro de Asistencia</a>
-                                <a class="dropdown-item" href="#">Registro de Notas</a>
-                            </div>
-                        </li>
+                    <ul class="navbar-nav ml-auto">
+                        @if(Auth::user()->hasAnyRole('student'))
+                            <li class="nav-item">
+                                <a href="/assistence" class="nav-link">Asistencias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/evaluation" class="nav-link">Notas</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->hasAnyRole(['admin','tutor']))
+                            <li class="nav-item">
+                                <a href="/tutor/assistance" class="nav-link">Asistencias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/tutor/evaluation" class="nav-link">Notas</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="tutorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Catalogo
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/tutor/cycle">Ciclos</a>
+                                    <a class="dropdown-item" href="/tutor/student">Alumnos</a>
+                                </div>
+                            </li>
+
+                        @endif
                     </ul>
-                    @endif
+
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
