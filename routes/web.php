@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-
+Route::redirect('/','/login',301);
 Route::get('idea','IdeaController@getIdeas');
 
 Route::post('idea','IdeaController@saveIdea');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('cycles');
+Route::get('/assistence', 'HomeController@assistence')->name('assistence');
