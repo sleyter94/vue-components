@@ -6,7 +6,7 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        Voy a cambiar el master
                     </div>
                 </div>
             </div>
